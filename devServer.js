@@ -37,7 +37,7 @@ module.exports = {
   historyApiFallback: true,
   progress: true,
   host: '0.0.0.0',
-  port: 3001,
+  port: 3007,
   hot: true,
   disableHostCheck: true,
   inline: true,
