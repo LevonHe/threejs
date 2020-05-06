@@ -87,18 +87,8 @@ export const geometryArr = [
     content: '',
   },
   {
-    value: 'RingGeometry',
-    label: '环形',
-    content: '',
-  },
-  {
     value: 'PlaneGeometry',
     label: '平面',
-    content: '',
-  },
-  {
-    value: 'ShapeGeometry',
-    label: '任意图形',
     content: '',
   },
   {
@@ -122,48 +112,8 @@ export const geometryArr = [
     content: '',
   },
   {
-    value: 'TorusKnotGeometry',
-    label: '环状扭结',
-    content: '',
-  },
-  {
-    value: 'PolyhedronGeometry',
-    label: '多面体',
-    content: '',
-  },
-  {
-    value: 'IcosahedronGeometry',
-    label: '二十面体',
-    content: '',
-  },
-  {
     value: 'OctahedronGeometry',
     label: '八面体',
-    content: '',
-  },
-  {
-    value: 'TetraHedronGeometry',
-    label: '四面体',
-    content: '',
-  },
-  {
-    value: 'DodecahedronGeometry',
-    label: '十二面体',
-    content: '',
-  },
-  {
-    value: 'ConvexGeometry',
-    label: '凸面体',
-    content: '',
-  },
-  {
-    value: 'LatheGeometry',
-    label: '扫描面',
-    content: '',
-  },
-  {
-    value: 'ExtrudeGeometry',
-    label: '拉伸几何体',
     content: '',
   },
   {
