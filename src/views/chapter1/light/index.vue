@@ -257,19 +257,20 @@ export default {
         // GUI
         const controls = new (function() {
           this.color = spotColor;
-          this.angle = Math.PI / 3;
+          this.angle = 60;
           this.intensity = 1;
           this.target = 'Plane';
         })();
         this.GUI = new dat.GUI();
         this.GUI.addColor(controls, 'color').onChange(function(e) {
           const c = new THREE.Color(e);
+          spotLight.color = c;
           spotLightHelper.color = c;
           spotLightHelper.update();
-          spotLight.color = c;
         });
-        this.GUI.add(controls, 'angle', 0, 2 * Math.PI).onChange(function(e) {
-          spotLight.angle = e;
+        this.GUI.add(controls, 'angle', 0, 90).onChange(function(e) {
+          spotLight.angle = (e / 180) * Math.PI;
+          spotLightHelper.update();
         });
         this.GUI.add(controls, 'intensity', 0, 3).onChange(function(e) {
           spotLight.intensity = e;
@@ -279,12 +280,15 @@ export default {
           switch (e) {
             case 'Plane':
               spotLight.target = _this.plane;
+              spotLightHelper.update();
               break;
             case 'Sphere':
               spotLight.target = _this.sphere;
+              spotLightHelper.update();
               break;
             case 'Cube':
               spotLight.target = _this.cube;
+              spotLightHelper.update();
               break;
           }
         });
@@ -324,12 +328,15 @@ export default {
           switch (e) {
             case 'Plane':
               directionalLight.target = _this.plane;
+              directionalLightHelper.update();
               break;
             case 'Sphere':
               directionalLight.target = _this.sphere;
+              directionalLightHelper.update();
               break;
             case 'Cube':
               directionalLight.target = _this.cube;
+              directionalLightHelper.update();
               break;
           }
         });

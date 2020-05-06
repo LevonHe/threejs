@@ -1,16 +1,41 @@
 <template>
-  <div id="light">
-    <div id="container"></div>
+  <div id="geometry" class="clearfix">
+    <div class="box pull-left">
+      <scroll :data="geometryArr">
+        <ul>
+          <li v-for="geo in geometryArr" :key="geo.value">
+            <el-button
+              class="btn"
+              size="medium"
+              :type="currentGeo === geo.value ? 'primary' : ''"
+              @click="addGeo(geo.value)"
+            >{{geo.label}}</el-button>
+            <el-tooltip placement="right" :content="geo.content">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
+          </li>
+        </ul>
+      </scroll>
+    </div>
+    <div id="container" class="pull-right"></div>
+    <div id="gui"></div>
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex';
 import * as THREE from 'three';
 import * as _ from 'lodash';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import dat from 'three/examples/jsm/libs/dat.gui.module';
+import Scroll from '@/components/betterScroll/scroll';
+import { geometryArr } from '@/config/selectTypes';
+
 export default {
   name: 'chapter1',
+  components: {
+    Scroll,
+  },
   data() {
     return {
       container: null,
@@ -18,15 +43,25 @@ export default {
       scene: null,
       camera: null,
       orbitControls: null,
+      plane: null,
       cube: null,
       sphere: null,
+      GUI: null,
+      geometryArr,
+      geoNameList: [],
     };
+  },
+  computed: {
+    ...mapState('cms/three', ['currentGeo']),
   },
   mounted() {
     this.init();
     this.animate();
   },
   methods: {
+    ...mapMutations({
+      CURRENT_GEO: 'cms/three/CURRENT_GEO',
+    }),
     init() {
       // renderer
       this.container = document.getElementById('container');
@@ -39,7 +74,7 @@ export default {
         preserveDrawingBuffer: true, // 保存绘图缓冲
       });
       this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-      this.renderer.setClearColor(0x000000, 1);
+      this.renderer.setClearColor(0x333333, 1);
       this.renderer.setPixelRatio(window.devicePixelRatio); // 兼容高清屏幕
       this.renderer.shadowMap.enabled = true;
       this.container.appendChild(this.renderer.domElement);
@@ -53,42 +88,31 @@ export default {
       this.camera.lookAt(this.scene.position);
 
       // axes
-      const axes = new THREE.AxesHelper(20);
+      const axes = new THREE.AxesHelper(40);
       this.scene.add(axes);
 
       // plane
-      const planeGeometry = new THREE.PlaneGeometry(60, 20, 1, 1);
-      // const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
+      const planeGeometry = new THREE.PlaneGeometry(120, 100, 1, 1);
       const planeMaterial = new THREE.MeshLambertMaterial({ color: 0xcccccc });
-      const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-      plane.rotation.x = -0.5 * Math.PI;
-      plane.position.set(15, 0, 0);
-      plane.receiveShadow = true;
-      this.scene.add(plane);
+      this.plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      this.plane.rotation.x = -Math.PI / 2;
+      this.plane.position.set(0, 0, 0);
+      this.plane.receiveShadow = true;
+      this.scene.add(this.plane);
 
       // cube
-      const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
-      // const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
+      const cubeGeometry = new THREE.BoxGeometry(10, 10, 10, 10, 10, 10);
       const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true });
       this.cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-      this.cube.position.set(-4, 3, 0);
-      this.cube.castShadow = true;
+      this.cube.position.set(-20, 5, 0);
       this.scene.add(this.cube);
 
       // sphere
       const sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
-      // const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x7777ff, wireframe: true });
       const sphereMaterial = new THREE.MeshLambertMaterial({ color: 0x7777ff, wireframe: true });
       this.sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-      this.sphere.position.set(20, 4, 2);
-      this.sphere.castShadow = true;
+      this.sphere.position.set(20, 4, 0);
       this.scene.add(this.sphere);
-
-      // light
-      const spotLight = new THREE.SpotLight(0xffffff);
-      spotLight.position.set(-40, 60, -10);
-      spotLight.castShadow = true;
-      this.scene.add(spotLight);
 
       // controls
       this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -118,19 +142,51 @@ export default {
       300,
       { leading: false, trailing: true }
     ),
+    addGeo(geoName) {
+      this.CURRENT_GEO(geoName);
+
+      this.scene.children.forEach((element) => {
+        this.scene.remove(element);
+      });
+
+      if (this.GUI) {
+        document.getElementById('gui').removeChild(this.GUI.domElement);
+        this.GUI = null;
+      }
+
+      this.GUI && document.getElementById('gui').appendChild(this.GUI.domElement);
+    },
   },
 };
 </script>
 <style lang="less" scoped>
-#light {
+#geometry {
   background-color: #fff;
   height: 100%;
   padding: 20px;
   position: relative;
   box-sizing: border-box;
   font-size: 0;
+  .box {
+    width: 20%;
+    height: 100%;
+    font-size: 14px;
+    position: relative;
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+    }
+    .btn {
+      margin: 5px;
+    }
+  }
   #container {
-    width: 100%;
+    width: calc(80% - 10px);
     height: 100%;
     overflow: hidden;
     outline: none;
@@ -143,6 +199,11 @@ export default {
         outline: none;
       }
     }
+  }
+  #gui {
+    position: absolute;
+    right: 20px;
+    top: 20px;
   }
 }
 </style>
