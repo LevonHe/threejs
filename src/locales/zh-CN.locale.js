@@ -26,6 +26,8 @@ module.exports = {
     Material: '材质',
     Geometry: '几何体',
     Chapter2: '第2讲',
+    HighGeo: '高级几何体',
+    BinaryOperation: '二元操作',
     Chapter3: '第3讲',
   },
   errorCode: {

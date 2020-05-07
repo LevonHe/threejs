@@ -35,9 +35,14 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "geometry" */ './views/chapter1/geometry'),
         },
         {
-          path: 'chapter2',
-          name: 'chapter2',
-          component: () => import(/* webpackChunkName: "chapter2" */ './views/chapter2'),
+          path: 'highGeo',
+          name: 'highGeo',
+          component: () => import(/* webpackChunkName: "highGeo" */ './views/chapter2/highGeo'),
+        },
+        {
+          path: 'binaryOperation',
+          name: 'binaryOperation',
+          component: () => import(/* webpackChunkName: "binaryOperation" */ './views/chapter2/binaryOperation'),
         },
         {
           path: 'chapter3',

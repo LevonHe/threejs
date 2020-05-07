@@ -40,8 +40,22 @@ export default {
         {
           id: '367358351169140000',
           name: 'Chapter2',
-          url: './chapter2',
+          url: null,
           icon: 's-home',
+          permissions: [
+            {
+              id: '1',
+              name: 'HighGeo',
+              url: './highGeo',
+              icon: null,
+            },
+            {
+              id: '2',
+              name: 'BinaryOperation',
+              url: './binaryOperation',
+              icon: null,
+            },
+          ],
         },
         {
           id: '367358351169160000',

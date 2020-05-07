@@ -26,6 +26,8 @@ module.exports = {
     Material: 'Material',
     Geometry: 'Geometry',
     Chapter2: 'Chapter2',
+    HighGeo: 'Advanced geometry',
+    BinaryOperation: 'Binary operation',
     Chapter3: 'Chapter3',
   },
   errorCode: {
