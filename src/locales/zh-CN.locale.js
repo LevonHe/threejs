@@ -28,6 +28,11 @@ module.exports = {
     Chapter2: '第2讲',
     HighGeo: '高级几何体',
     BinaryOperation: '二元操作',
+    Sprite: '粒子云',
+    LoadObj: '外载模型',
+    Animation: '动画',
+    Texture: '纹理',
+    Physic: '物理效果',
     Chapter3: '第3讲',
   },
   errorCode: {

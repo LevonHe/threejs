@@ -11,9 +11,9 @@ function resolve(dir) {
 }
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/index.js'],
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname, 'dist/fatri'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name]_[hash:8].main.js',
     chunkFilename: '[name]_[hash:8].chunk.js',
     publicPath: '/',
@@ -135,7 +135,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, 'public/statics'),
-        to: path.join(__dirname, 'dist/fatri/statics'),
+        to: path.join(__dirname, 'dist/statics'),
         ignore: ['.*'],
       },
     ]),

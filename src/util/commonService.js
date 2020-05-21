@@ -280,3 +280,46 @@ export const division = (num1, num2) => {
   r2 = Number(num2.toString().replace('.', ''));
   return (r1 / r2) * Math.pow(10, n2 - n1);
 };
+
+// getBrowserType
+function getVersion(versionStr) {
+  const versionArr = versionStr.split('.');
+  let version;
+  if (versionArr.length === 1) {
+    version = versionArr[0];
+  } else if (versionArr.length > 1) {
+    version = versionArr[0] + '.' + versionArr[1];
+  }
+  return parseFloat(version);
+}
+export const getBrowserType = () => {
+  const userAgent = navigator.userAgent;
+  if (userAgent.indexOf('Firefox') > -1) {
+    const versionStr = userAgent.split('Firefox/')[1].split(' ')[0];
+    const version = getVersion(versionStr);
+    return { type: 'Firefox', version };
+  }
+  if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Edge') > -1) {
+    const versionStr = userAgent.split('Edge/')[1].split(' ')[0];
+    const version = getVersion(versionStr);
+    return { type: 'Edge', version };
+  }
+  if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Safari') > -1) {
+    const versionStr = userAgent.split('Chrome/')[1].split(' ')[0];
+    const version = getVersion(versionStr);
+    return { type: 'Chrome', version };
+  }
+  if (userAgent.indexOf('Trident') > -1 && userAgent.indexOf('compatible') > -1) {
+    if (userAgent.indexOf('MSIE 10.0')) {
+      return { type: 'IE', version: 10.0 };
+    }
+    if (userAgent.indexOf('MSIE 9.0')) {
+      return { type: 'IE', version: 9.0 };
+    }
+  }
+  if (userAgent.indexOf('Trident') > -1) {
+    return { type: 'IE', version: 11.0 };
+  }
+
+  return { type: 'none', version: 0 };
+};

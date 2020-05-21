@@ -83,6 +83,16 @@ export default {
     this.init();
     this.animate();
   },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onWindowResize, false);
+    this.animate = () => {};
+    this.onWindowResize = () => {};
+    this.container = null;
+    this.renderer = null;
+    this.camera = null;
+    this.scene = null;
+    this.orbitControls = null;
+  },
   methods: {
     ...mapMutations({
       CURRENT_LIGHT: 'cms/three/CURRENT_LIGHT',

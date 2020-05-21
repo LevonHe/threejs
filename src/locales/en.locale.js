@@ -28,6 +28,11 @@ module.exports = {
     Chapter2: 'Chapter2',
     HighGeo: 'Advanced geometry',
     BinaryOperation: 'Binary operation',
+    Sprite: 'Particle',
+    LoadObj: 'Load external model',
+    Animation: 'Animation',
+    Texture: 'Texture',
+    Physic: 'Physic',
     Chapter3: 'Chapter3',
   },
   errorCode: {

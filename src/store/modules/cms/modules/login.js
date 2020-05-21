@@ -55,6 +55,36 @@ export default {
               url: './binaryOperation',
               icon: null,
             },
+            {
+              id: '3',
+              name: 'Sprite',
+              url: './sprite',
+              icon: null,
+            },
+            {
+              id: '4',
+              name: 'LoadObj',
+              url: './loadObj',
+              icon: null,
+            },
+            {
+              id: '5',
+              name: 'Animation',
+              url: './animation',
+              icon: null,
+            },
+            {
+              id: '6',
+              name: 'Texture',
+              url: './texture',
+              icon: null,
+            },
+            {
+              id: '7',
+              name: 'Physic',
+              url: './physic',
+              icon: null,
+            },
           ],
         },
         {

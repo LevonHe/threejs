@@ -25,6 +25,16 @@ export default {
     this.animate();
     this.loadGeometryOperation();
   },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onWindowResize, false);
+    this.animate = () => {};
+    this.onWindowResize = () => {};
+    this.container = null;
+    this.renderer = null;
+    this.camera = null;
+    this.scene = null;
+    this.orbitControls = null;
+  },
   methods: {
     init() {
       // renderer
@@ -53,9 +63,14 @@ export default {
 
       // light
       const spotLight = new THREE.SpotLight(0xffffff);
-      spotLight.position.set(-40, 60, -10);
+      spotLight.position.set(0, 60, 0);
       spotLight.castShadow = true;
       this.scene.add(spotLight);
+
+      // light
+      const ambiColor = '#ffffff';
+      const ambientLight = new THREE.AmbientLight(ambiColor);
+      this.scene.add(ambientLight);
 
       // controls
       this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -96,7 +111,9 @@ export default {
       const sphereBSP1 = new ThreeBSP(mesh1);
       const sphereBSP2 = new ThreeBSP(mesh2);
 
-      const resultBSP = sphereBSP1.subtract(sphereBSP2);
+      // const resultBSP = sphereBSP1.subtract(sphereBSP2);
+      // const resultBSP = sphereBSP1.intersect(sphereBSP2);
+      const resultBSP = sphereBSP1.union(sphereBSP2);
       const result = resultBSP.toMesh();
       result.geometry.computeFaceNormals();
       result.geometry.computeVertexNormals();

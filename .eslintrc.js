@@ -6,6 +6,7 @@ module.exports = {
   },
   globals: {
     AMap: true,
+    chroma: true,
   },
   extends: ['plugin:vue/essential', '@vue/standard'],
   rules: {

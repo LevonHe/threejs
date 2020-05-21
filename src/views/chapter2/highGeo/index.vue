@@ -27,7 +27,18 @@ export default {
     // this.loadLatheGeometry();
     // this.loadExtrudeGeometry();
     // this.loadTubeGeometry();
-    this.loadTextGeometry();
+    // this.loadTextGeometry();
+    this.loadMergeGeometry();
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onWindowResize, false);
+    this.animate = () => {};
+    this.onWindowResize = () => {};
+    this.container = null;
+    this.renderer = null;
+    this.camera = null;
+    this.scene = null;
+    this.orbitControls = null;
   },
   methods: {
     init() {
@@ -181,6 +192,19 @@ export default {
         _this.scene.add(mesh1);
         _this.scene.add(mesh2);
       });
+    },
+    loadMergeGeometry() {
+      const geometry = new THREE.Geometry();
+      const material = new THREE.MeshLambertMaterial();
+      for (let i = 0; i < 100; i += 1) {
+        const cubeGeometry = new THREE.BoxGeometry(2, 2, 2);
+        const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true });
+        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(i * 10, i, 1);
+        cube.updateMatrix();
+        geometry.merge(cube.geometry, cube.matrix);
+      }
+      this.scene.add(new THREE.Mesh(geometry, material));
     },
   },
 };

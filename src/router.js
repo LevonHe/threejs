@@ -45,6 +45,31 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "binaryOperation" */ './views/chapter2/binaryOperation'),
         },
         {
+          path: 'sprite',
+          name: 'sprite',
+          component: () => import(/* webpackChunkName: "sprite" */ './views/chapter2/sprite'),
+        },
+        {
+          path: 'loadObj',
+          name: 'loadObj',
+          component: () => import(/* webpackChunkName: "loadObj" */ './views/chapter2/loadObj'),
+        },
+        {
+          path: 'animation',
+          name: 'animation',
+          component: () => import(/* webpackChunkName: "animation" */ './views/chapter2/animation'),
+        },
+        {
+          path: 'texture',
+          name: 'texture',
+          component: () => import(/* webpackChunkName: "texture" */ './views/chapter2/texture'),
+        },
+        {
+          path: 'physic',
+          name: 'physic',
+          component: () => import(/* webpackChunkName: "physic" */ './views/chapter2/physic'),
+        },
+        {
           path: 'chapter3',
           name: 'chapter3',
           component: () => import(/* webpackChunkName: "chapter3" */ './views/chapter3'),
