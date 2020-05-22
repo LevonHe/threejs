@@ -33,6 +33,7 @@ module.exports = {
     Animation: '动画',
     Texture: '纹理',
     Physic: '物理效果',
+    Audio: '声源',
     Chapter3: '第3讲',
   },
   errorCode: {

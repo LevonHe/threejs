@@ -70,6 +70,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "physic" */ './views/chapter2/physic'),
         },
         {
+          path: 'audio',
+          name: 'audio',
+          component: () => import(/* webpackChunkName: "audio" */ './views/chapter2/audio'),
+        },
+        {
           path: 'chapter3',
           name: 'chapter3',
           component: () => import(/* webpackChunkName: "chapter3" */ './views/chapter3'),

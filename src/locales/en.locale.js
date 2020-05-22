@@ -33,6 +33,7 @@ module.exports = {
     Animation: 'Animation',
     Texture: 'Texture',
     Physic: 'Physic',
+    Audio: 'Audio',
     Chapter3: 'Chapter3',
   },
   errorCode: {

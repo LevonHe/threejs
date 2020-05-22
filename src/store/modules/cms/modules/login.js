@@ -85,6 +85,12 @@ export default {
               url: './physic',
               icon: null,
             },
+            {
+              id: '8',
+              name: 'Audio',
+              url: './audio',
+              icon: null,
+            },
           ],
         },
         {
