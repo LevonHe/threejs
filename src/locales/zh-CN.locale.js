@@ -18,6 +18,9 @@ module.exports = {
     createdAt: '创建时间',
     updatedAt: '更新时间',
     description: '描述',
+    reset: '重置',
+    noData: '暂无数据',
+    release: '释放',
   },
   menu: {
     Chapter1: '第1讲',

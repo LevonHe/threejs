@@ -18,13 +18,18 @@ export default {
         if (component) {
           const Modal = Vue.extend(component);
           $vm = new Modal();
+          $vm.options = { ...options, title, winData, width, confirm, cancel };
+          $el = $vm.$mount().$el;
         }
-        $vm.options = { ...options, title, winData, width, confirm, cancel };
-        $el = $vm.$mount().$el;
-        document.body.appendChild($el);
+        if ($el) {
+          document.body.appendChild($el);
+        }
       },
       hide() {
         if ($vm) {
+          $vm.$destroy();
+        }
+        if ($el) {
           document.body.removeChild($el);
         }
       },

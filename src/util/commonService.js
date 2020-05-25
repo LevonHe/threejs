@@ -323,3 +323,115 @@ export const getBrowserType = () => {
 
   return { type: 'none', version: 0 };
 };
+
+export const getFloat = (num, n) => {
+  let result = parseFloat(num);
+  if (isNaN(result)) {
+    return '';
+  }
+  let total = n ? parseInt(n) : 0;
+  if (total <= 0) {
+    return Math.round(result) + '';
+  }
+  result = Math.round(result * Math.pow(10, n)) / Math.pow(10, n);
+  let sX = result.toString();
+  let posDecimal = sX.indexOf('.'); // 小数点的索引值
+  // 整数
+  if (posDecimal < 0) {
+    posDecimal = sX.length;
+    sX += '.';
+  }
+  // 当数字的长度小于小数点索引加n时，补0
+  while (sX.length <= posDecimal + total) {
+    sX += '0';
+  }
+  return sX + '';
+};
+
+// 判断数值是否存在
+export const isValueExist = (value) => {
+  if (value || (value !== undefined && value !== null)) {
+    return true;
+  }
+  return false;
+};
+
+function uniqueArr(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr.indexOf(arr[i]) === i) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+export const processConfig = (configParamArr, originSensorArr) => {
+  // 提取有告警的传感器
+  const alarmSensorArr = originSensorArr.filter((i) => i.alarmLevel && i.alarmLevel !== 'OK');
+  const alarmSensorIdArr = alarmSensorArr.map((i) => i.id);
+  // 提取传感器位置
+  const locationArr = configParamArr.map((item) => item.location);
+  // 传感器位置去重
+  const locationUnique = uniqueArr(locationArr);
+  const config = [];
+  locationUnique.forEach((ele) => {
+    const cc = {
+      location: ele,
+    };
+    // ele位置下所有的传感器信息
+    const sensorArr = configParamArr
+      .filter((item) => item.location === ele)
+      .map((item) => ({ sensorId: item.sensorId, sensorName: item.sensorName }));
+    // ele位置下所有的传感器id
+    const sensorIdArr = sensorArr.map((item) => item.sensorId);
+    // ele位置下传感器id去重
+    const sensorIdUnique = uniqueArr(sensorIdArr);
+    const sensorList = [];
+    sensorIdUnique.forEach((e) => {
+      const ss = {
+        sensorId: e,
+        sensorName: sensorArr.filter((item) => item.sensorId === e)[0].sensorName,
+      };
+      // 如果该传感器id在告警传感器列表中，则该位置需显示告警颜色
+      let alarmSensorOrNot = alarmSensorIdArr.includes(e);
+      let alarmSensor = {};
+      let alarmIdentifierArr = [];
+      if (alarmSensorOrNot) {
+        alarmSensor = alarmSensorArr.find((i) => i.id === e);
+        alarmIdentifierArr =
+          alarmSensor && alarmSensor.alarmReasons && alarmSensor.alarmReasons.length > 0
+            ? alarmSensor.alarmReasons
+            : [];
+      }
+      if (alarmSensorOrNot && alarmSensor) {
+        ss.alarmLevel = alarmSensor.alarmLevel;
+      }
+      const identifierList = configParamArr
+        .filter((item) => item.location === ele)
+        .filter((item) => item.sensorId === e)
+        .map((item) => {
+          const identifierObj = {
+            identifier: item.identifier,
+            identifierName: item.variateName,
+            value: item.value,
+            metadata: item.metadata,
+          };
+          // 如果该传感器是告警传感器，则需要筛选出哪个变量在告警状态
+          if (
+            alarmSensorOrNot &&
+            alarmIdentifierArr.length > 0 &&
+            alarmIdentifierArr.includes(item.identifier) &&
+            alarmSensor
+          ) {
+            identifierObj.alarmLevel = alarmSensor.alarmLevel;
+          }
+          return identifierObj;
+        });
+      ss.identifierList = identifierList;
+      sensorList.push(ss);
+    });
+    cc.sensorList = sensorList;
+    config.push(cc);
+  });
+  return config;
+};

@@ -1,0 +1,73 @@
+[
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "频带有效值046X",
+    "identifier": "NX_FFT_046X",
+    "value": 100,
+    "metadata": { "unit": "hz" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "2倍频速度有效值",
+    "identifier": "2XspeedEffective",
+    "value": 1200,
+    "metadata": { "unit": "m/s" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "正反进动方向",
+    "identifier": "rotation",
+    "value": 567,
+    "metadata": { "unit": "g" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "频带有效值",
+    "value": 12.36,
+    "metadata": { "unit": "hz" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "1倍频速度有效值",
+    "identifier": "1XspeedEffective",
+    "value": 1100,
+    "metadata": { "unit": "m/s" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "频带有效值3X",
+    "identifier": "NX_FFT_3X",
+    "value": 120,
+    "metadata": { "unit": "hz" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "速度变化率",
+    "identifier": "change_rate",
+    "value": 12,
+    "metadata": { "unit": "g" }
+  },
+  {
+    "location": "sensor_engine_inner",
+    "sensorName": "振动传感器",
+    "sensorId": "462246827685711872",
+    "variateName": "是否冲击波",
+    "identifier": "s_impact",
+    "value": 1,
+    "metadata": { "unit": "g" }
+  }
+]

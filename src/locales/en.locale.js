@@ -18,6 +18,9 @@ module.exports = {
     createdAt: 'Created',
     updatedAt: 'Updated',
     description: 'Description',
+    reset: 'Reset',
+    noData: 'No data.',
+    release: 'Release',
   },
   menu: {
     Chapter1: 'Chapter1',

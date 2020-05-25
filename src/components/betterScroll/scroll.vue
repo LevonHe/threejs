@@ -28,6 +28,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    // 是否开启纵向滚动
+    scrollY: {
+      type: Boolean,
+      default: true,
+    },
     // 是否派发滚动事件
     listenScroll: {
       type: Boolean,
@@ -58,6 +63,11 @@ export default {
       type: Number,
       default: 20,
     },
+    // 滚动条fade
+    scrollbarFade: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -87,11 +97,13 @@ export default {
       this.scroll = new BScroll(this.$refs.wrapper, {
         mouseWheel: true,
         scrollbar: {
-          fade: true,
+          fade: this.scrollbarFade,
+          interactive: true,
         },
         probeType: this.probeType,
         click: this.click,
         scrollX: this.scrollX,
+        scrollY: this.scrollY,
       });
 
       this.$emit('setScroll', this.scroll);

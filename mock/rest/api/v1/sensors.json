@@ -1,0 +1,40 @@
+[
+  {
+    "id": "462246827685711872",
+    "machineId": null,
+    "machineName": null,
+    "name": "振动传感器",
+    "alarmLevel": "OK",
+    "alarmReasons": [],
+    "additionalInfo": null,
+    "variates": [
+      { "name": "频带有效值046X", "identifier": "NX_FFT_046X", "value": 100, "metadata": { "unit": "hz" } },
+      { "name": "频带有效值3X", "identifier": "NX_FFT_3X", "value": 120, "metadata": { "unit": "hz" } },
+      { "name": "2倍频速度有效值", "identifier": "2XspeedEffective", "value": 1200, "metadata": { "unit": "m/s" } },
+      { "name": "1倍频速度有效值", "identifier": "1XspeedEffective", "value": 1100, "metadata": { "unit": "m/s" } },
+      { "name": "正反进动方向", "identifier": "rotation", "value": 567, "metadata": { "unit": "g" } },
+      { "name": "频带有效值", "identifier": "NX_FFT", "value": 12.36, "metadata": { "unit": "hz" } },
+      { "name": "1倍频速度相位变化率", "identifier": "1Xphase_change_rate", "value": 12, "metadata": { "unit": "g" } },
+      { "name": "2倍频速度变化率", "identifier": "2Xchange_rate", "value": 20, "metadata": { "unit": "g" } },
+      { "name": "1倍频速度变化率", "identifier": "1Xchange_rate", "value": 30, "metadata": { "unit": "g" } },
+      { "name": "速度变化率", "identifier": "change_rate", "value": 12, "metadata": { "unit": "g" } },
+      { "name": "轴心轨迹", "identifier": "orbit_type", "value": 12, "metadata": { "unit": "g" } },
+      { "name": "是否冲击波", "identifier": "s_impact", "value": 1, "metadata": { "unit": "g" } },
+      { "name": "是否削波", "identifier": "s_flat", "value": 0, "metadata": { "unit": "g" } },
+      { "name": "是否正弦波", "identifier": "s_sin", "value": 1, "metadata": { "unit": "g" } },
+      { "name": "速度1X幅值", "identifier": "amplitude1X", "value": 456, "metadata": { "unit": "g" } },
+      { "name": "速度1X相位", "identifier": "phase1X", "value": 1233, "metadata": { "unit": "g" } },
+      { "name": "速度2X幅值", "identifier": "amplitude2X", "value": 1234, "metadata": { "unit": "g" } },
+      { "name": "速度2X相位", "identifier": "phase2X", "value": 454, "metadata": { "unit": "g" } },
+      { "name": "速度通频有效值", "identifier": "speedEffective", "value": 345, "metadata": { "unit": "m/s" } },
+      {
+        "name": "加速度通频有效值",
+        "identifier": "accelerationEffective",
+        "value": 2345,
+        "metadata": { "unit": "m/s" }
+      },
+      { "name": "加速度通频单峰值", "identifier": "accelerationPeak", "value": 4534, "metadata": { "unit": "m/s" } },
+      { "name": "加速度值", "identifier": "acceleratedSpeed", "value": 35, "metadata": { "unit": "g" } }
+    ]
+  }
+]
